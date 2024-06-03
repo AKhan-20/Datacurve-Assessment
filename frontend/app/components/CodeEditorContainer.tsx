@@ -7,11 +7,21 @@ const CodeEditorContainer: React.FC = () => {
   const [error, setError] = useState('test');
 
   const handleExecute = async (userCode: string) => {
-    console.log('execute')
+    const response = await fetch('http://127.0.0.1:8000/execute', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ code: userCode }),
+    });
+
+    const resJson = await response.json();
+    setOutput(resJson.output);
+    setError(resJson.error);
   };
 
   const handleSubmit = (userCode: string) => {
-    console.log('submit')
+    console.log('submit');
   };
 
   return (
@@ -30,7 +40,6 @@ const CodeEditorContainer: React.FC = () => {
             <p>{error}</p>
           </>
         )}
-
       </div>
     </div>
   );

@@ -25,11 +25,8 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onExecute, onSubmit }) => {
         onChange={handleEditorChange}
       />
 
-      <div className='mt-2'>
-        <Button
-          label="Execute Code"
-          onClick={() => onExecute(userCode)}
-        />
+      <div className="mt-2">
+        <Button label="Execute Code" onClick={() => onExecute(userCode)} />
         <Button
           className="ml-2"
           label="Submit Code"
